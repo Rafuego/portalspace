@@ -25,10 +25,13 @@ const s: Record<string, React.CSSProperties> = {
   btnDel:     { background: 'transparent', border: '1px solid #e0e0e0', color: '#bbb', fontFamily: 'inherit', fontSize: 10, padding: '7px 10px', cursor: 'pointer', borderRadius: 2, textTransform: 'uppercase' as const, letterSpacing: '0.1em' },
   doneBadge:  { fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: '#bbb', border: '1px solid #e0e0e0', padding: '6px 12px', borderRadius: 2, fontWeight: 500 },
   empty:      { textAlign: 'center' as const, padding: 48, color: '#bbb', fontSize: 12, letterSpacing: '0.1em' },
-  authWrap:   { minHeight: '100vh', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  authBox:    { width: 320, padding: 32, border: '1px solid #e0e0e0', borderRadius: 4 },
-  authTitle:  { fontSize: 13, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 20, color: '#111' },
-  authErr:    { fontSize: 12, color: '#cc3333', marginTop: 10 },
+  authWrap:   { minHeight: '100vh', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  authBox:    { width: 360, padding: '48px 40px', background: '#fff', borderRadius: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06)' },
+  authEye:    { fontSize: 9, fontWeight: 400, letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: '#999', marginBottom: 6 },
+  authTitle:  { fontSize: 22, fontWeight: 700, color: '#111', marginBottom: 28 },
+  authInp:    { width: '100%', boxSizing: 'border-box' as const, background: '#fff', border: '1px solid #ddd', color: '#111', fontFamily: 'inherit', fontSize: 14, padding: '13px 16px', borderRadius: 8, outline: 'none' },
+  authBtn:    { width: '100%', marginTop: 12, background: '#111', border: 'none', color: '#fff', fontFamily: 'inherit', fontSize: 13, letterSpacing: '0.08em', padding: '13px 0', cursor: 'pointer', borderRadius: 8, textTransform: 'uppercase' as const, fontWeight: 600 },
+  authErr:    { fontSize: 12, color: '#cc3333', marginTop: 14, textAlign: 'center' as const },
 }
 
 const MEDAL = [
@@ -112,11 +115,12 @@ export default function AdminPage() {
   if (!authed) return (
     <div style={s.authWrap}>
       <div style={s.authBox}>
-        <div style={s.authTitle}>Portal Space Systems — Admin</div>
-        <input style={s.inp} type="password" placeholder="Password" value={pw}
+        <div style={s.authEye}>Portal Space Systems</div>
+        <div style={s.authTitle}>Admin</div>
+        <input style={s.authInp} type="password" placeholder="Enter password" value={pw}
           onChange={e => { setPw(e.target.value); setPwErr(false) }}
           onKeyDown={e => e.key === 'Enter' && login()} />
-        <button style={{ ...s.btnAdd, marginTop: 10, width: '100%' }} onClick={login}>Enter</button>
+        <button style={s.authBtn} onClick={login}>Sign In</button>
         {pwErr && <div style={s.authErr}>Incorrect password</div>}
       </div>
     </div>
