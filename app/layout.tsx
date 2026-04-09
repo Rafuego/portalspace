@@ -5,6 +5,9 @@ const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '700'] }
 
 export const metadata: Metadata = {
   title: 'Portal Space Leaderboard',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
