@@ -55,17 +55,17 @@ export default function StreamPage() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
         <div>
-          <div style={{ fontSize: 9, letterSpacing: '0.3em', color: '#444', textTransform: 'uppercase', marginBottom: 4, fontWeight: 400 }}>
+          <div style={{ fontSize: 9, letterSpacing: '0.3em', color: '#888', textTransform: 'uppercase', marginBottom: 4, fontWeight: 400 }}>
             Portal Space Systems
           </div>
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '0.04em', color: '#fff' }}>
             Portal Space Leaderboard
           </div>
-          <div style={{ fontSize: 11, color: '#555', marginTop: 4, fontWeight: 300 }}>
+          <div style={{ fontSize: 11, color: '#999', marginTop: 4, fontWeight: 300 }}>
             {done.length > 0 ? `${done.length} completed run${done.length !== 1 ? 's' : ''}` : 'Waiting for results...'}
           </div>
         </div>
-        <div style={{ textAlign: 'right', fontSize: 10, color: '#444', fontWeight: 300, lineHeight: 2.1 }}>
+        <div style={{ textAlign: 'right', fontSize: 10, color: '#888', fontWeight: 300, lineHeight: 2.1 }}>
           <div>
             <span style={{ display: 'inline-block', width: 5, height: 5, borderRadius: '50%', background: '#fff', marginRight: 6, verticalAlign: 'middle' }} />
             Live
@@ -76,11 +76,11 @@ export default function StreamPage() {
       </div>
 
       {/* Divider */}
-      <div style={{ height: 1, background: '#1e1e1e', marginBottom: 22 }} />
+      <div style={{ height: 1, background: '#333', marginBottom: 22 }} />
 
       {/* Empty state */}
       {done.length === 0 && (
-        <div style={{ textAlign: 'center', padding: 80, color: '#333', fontSize: 13, letterSpacing: '0.1em' }}>
+        <div style={{ textAlign: 'center', padding: 80, color: '#777', fontSize: 13, letterSpacing: '0.1em' }}>
           No completed runs yet
         </div>
       )}
@@ -110,15 +110,15 @@ export default function StreamPage() {
         <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <thead>
             <tr>
-              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#444', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'left', borderBottom: '1px solid #1e1e1e', fontWeight: 500, width: 36 }}>#</th>
-              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#444', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'left', borderBottom: '1px solid #1e1e1e', fontWeight: 500 }}>Player</th>
+              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#777', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'left', borderBottom: '1px solid #333', fontWeight: 500, width: 36 }}>#</th>
+              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#777', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'left', borderBottom: '1px solid #333', fontWeight: 500 }}>Player</th>
               <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#444', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'right', borderBottom: '1px solid #1e1e1e', fontWeight: 500, width: 130 }}>Time</th>
             </tr>
           </thead>
           <tbody>
             {rest.map((p, i) => (
               <tr key={p.id}>
-                <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 11, color: '#444', width: 36 }}>{i + 4}</td>
+                <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 11, color: '#777', width: 36 }}>{i + 4}</td>
                 <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 13, color: '#fff' }}>{p.name}</td>
                 <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 14, fontWeight: 300, color: '#fff', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{fmt(p.final_ms ?? 0)}</td>
               </tr>
@@ -128,7 +128,7 @@ export default function StreamPage() {
       )}
 
       {/* Footer */}
-      <div style={{ marginTop: 32, borderTop: '1px solid #1a1a1a', paddingTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#333', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+      <div style={{ marginTop: 32, borderTop: '1px solid #333', paddingTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#777', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
         <span>Portal Space Systems</span>
         <span>{players.length} players registered</span>
       </div>
