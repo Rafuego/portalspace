@@ -58,22 +58,22 @@ export default function StreamPage() {
   const cols = podium.length === 1 ? '1fr' : podium.length === 2 ? '1fr 1fr' : '1fr 1fr 1fr'
 
   return (
-    <div style={{ background: '#000', minHeight: '100vh', color: '#fff', fontFamily: 'inherit', padding: '28px 24px' }}>
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff', fontFamily: 'inherit', padding: '36px 32px' }}>
 
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 32 }}>
         <div>
-          <img src="/portal-logo.png" alt="Portal" style={{ height: 32, marginBottom: 8, display: 'block' }} />
-          <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '0.04em', color: '#fff' }}>
+          <img src="/portal-logo.png" alt="Portal" style={{ height: 56, marginBottom: 12, display: 'block' }} />
+          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '0.04em', color: '#fff' }}>
             Leaderboard
           </div>
-          <div style={{ fontSize: 11, color: '#999', marginTop: 4, fontWeight: 300 }}>
+          <div style={{ fontSize: 14, color: '#999', marginTop: 6, fontWeight: 300 }}>
             {done.length > 0 ? `${done.length} completed run${done.length !== 1 ? 's' : ''}` : 'Waiting for results...'}
           </div>
         </div>
-        <div style={{ textAlign: 'right', fontSize: 10, color: '#888', fontWeight: 300, lineHeight: 2.1 }}>
+        <div style={{ textAlign: 'right', fontSize: 13, color: '#888', fontWeight: 300, lineHeight: 2.1 }}>
           <div>
-            <span style={{ display: 'inline-block', width: 5, height: 5, borderRadius: '50%', background: '#fff', marginRight: 6, verticalAlign: 'middle' }} />
+            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#fff', marginRight: 8, verticalAlign: 'middle' }} />
             Live
           </div>
           <div>{clock}</div>
@@ -82,50 +82,50 @@ export default function StreamPage() {
       </div>
 
       {/* Divider */}
-      <div style={{ height: 1, background: '#333', marginBottom: 22 }} />
+      <div style={{ height: 1, background: '#333', marginBottom: 26 }} />
 
       {/* Player registration */}
       {!submitted ? (
-        <div style={{ display: 'flex', gap: 10, marginBottom: 24, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 12, marginBottom: 28, alignItems: 'center' }}>
           <input
-            style={{ flex: 1, maxWidth: 280, background: 'transparent', border: '1px solid #333', color: '#fff', fontFamily: 'inherit', fontSize: 13, padding: '10px 14px', borderRadius: 4, outline: 'none' }}
+            style={{ flex: 1, maxWidth: 320, background: 'transparent', border: '1px solid #333', color: '#fff', fontFamily: 'inherit', fontSize: 15, padding: '12px 16px', borderRadius: 6, outline: 'none' }}
             placeholder="Enter your username"
             value={username}
             onChange={e => setUsername(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && submitName()}
           />
           <button
-            style={{ background: '#fff', border: 'none', color: '#000', fontFamily: 'inherit', fontSize: 10, letterSpacing: '0.12em', padding: '10px 20px', cursor: 'pointer', borderRadius: 4, textTransform: 'uppercase', fontWeight: 600 }}
+            style={{ background: '#fff', border: 'none', color: '#000', fontFamily: 'inherit', fontSize: 13, letterSpacing: '0.1em', padding: '12px 24px', cursor: 'pointer', borderRadius: 6, textTransform: 'uppercase', fontWeight: 600 }}
             onClick={submitName}
           >
             Join
           </button>
         </div>
       ) : (
-        <div style={{ marginBottom: 24, fontSize: 12, color: '#777', letterSpacing: '0.08em' }}>
+        <div style={{ marginBottom: 28, fontSize: 15, color: '#777', letterSpacing: '0.06em' }}>
           ✓ Registered as <span style={{ color: '#fff', fontWeight: 500 }}>{username}</span> — waiting for your run
         </div>
       )}
 
       {/* Empty state */}
       {done.length === 0 && (
-        <div style={{ textAlign: 'center', padding: 80, color: '#777', fontSize: 13, letterSpacing: '0.1em' }}>
+        <div style={{ textAlign: 'center', padding: 80, color: '#777', fontSize: 16, letterSpacing: '0.08em' }}>
           No completed runs yet
         </div>
       )}
 
       {/* Podium */}
       {podium.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: cols, gap: 10, marginBottom: 22 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: cols, gap: 14, marginBottom: 28 }}>
           {podium.map((p, i) => {
             const m = MEDAL[i]
             return (
-              <div key={p.id} style={{ background: m.bg, border: `1px solid ${m.border}`, borderRadius: 3, padding: '18px 14px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 500, marginBottom: 8, color: m.color }}>
+              <div key={p.id} style={{ background: m.bg, border: `1px solid ${m.border}`, borderRadius: 6, padding: '24px 18px', textAlign: 'center' }}>
+                <div style={{ fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 500, marginBottom: 10, color: m.color }}>
                   {m.label}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 500, marginBottom: 6, color: '#fff' }}>{p.name}</div>
-                <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.03em', color: m.color }}>
+                <div style={{ fontSize: 18, fontWeight: 500, marginBottom: 8, color: '#fff' }}>{p.name}</div>
+                <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.03em', color: m.color }}>
                   {fmt(p.final_ms ?? 0)}
                 </div>
               </div>
@@ -139,17 +139,17 @@ export default function StreamPage() {
         <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <thead>
             <tr>
-              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#777', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'left', borderBottom: '1px solid #333', fontWeight: 500, width: 36 }}>#</th>
-              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#777', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'left', borderBottom: '1px solid #333', fontWeight: 500 }}>Player</th>
-              <th style={{ fontSize: 9, letterSpacing: '0.22em', color: '#444', textTransform: 'uppercase', padding: '6px 10px', textAlign: 'right', borderBottom: '1px solid #1e1e1e', fontWeight: 500, width: 130 }}>Time</th>
+              <th style={{ fontSize: 11, letterSpacing: '0.2em', color: '#777', textTransform: 'uppercase', padding: '8px 12px', textAlign: 'left', borderBottom: '1px solid #333', fontWeight: 500, width: 44 }}>#</th>
+              <th style={{ fontSize: 11, letterSpacing: '0.2em', color: '#777', textTransform: 'uppercase', padding: '8px 12px', textAlign: 'left', borderBottom: '1px solid #333', fontWeight: 500 }}>Player</th>
+              <th style={{ fontSize: 11, letterSpacing: '0.2em', color: '#777', textTransform: 'uppercase', padding: '8px 12px', textAlign: 'right', borderBottom: '1px solid #333', fontWeight: 500, width: 150 }}>Time</th>
             </tr>
           </thead>
           <tbody>
             {rest.map((p, i) => (
               <tr key={p.id}>
-                <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 11, color: '#777', width: 36 }}>{i + 4}</td>
-                <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 13, color: '#fff' }}>{p.name}</td>
-                <td style={{ padding: '10px 10px', borderBottom: '1px solid #161616', fontSize: 14, fontWeight: 300, color: '#fff', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{fmt(p.final_ms ?? 0)}</td>
+                <td style={{ padding: '12px 12px', borderBottom: '1px solid #1e1e1e', fontSize: 14, color: '#777', width: 44 }}>{i + 4}</td>
+                <td style={{ padding: '12px 12px', borderBottom: '1px solid #1e1e1e', fontSize: 16, color: '#fff' }}>{p.name}</td>
+                <td style={{ padding: '12px 12px', borderBottom: '1px solid #1e1e1e', fontSize: 17, fontWeight: 300, color: '#fff', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{fmt(p.final_ms ?? 0)}</td>
               </tr>
             ))}
           </tbody>
@@ -157,7 +157,7 @@ export default function StreamPage() {
       )}
 
       {/* Footer */}
-      <div style={{ marginTop: 32, borderTop: '1px solid #333', paddingTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#777', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+      <div style={{ marginTop: 40, borderTop: '1px solid #333', paddingTop: 14, display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#777', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
         <span>Portal Space Systems</span>
         <span>{players.length} players registered</span>
       </div>
