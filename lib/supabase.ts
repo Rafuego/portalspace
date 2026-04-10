@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 export type Player = {
   id: string
   name: string
+  real_name: string | null
   state: 'pending' | 'live' | 'done'
   start_ms: number | null
   final_ms: number | null

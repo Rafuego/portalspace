@@ -53,6 +53,7 @@ export default function AdminPage() {
   const [pwErr, setPwErr] = useState(false)
   const [players, setPlayers] = useState<Player[]>([])
   const [name, setName] = useState('')
+  const [realName, setRealName] = useState('')
   const [ticks, setTicks] = useState(0)
   const tickRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -85,10 +86,11 @@ export default function AdminPage() {
 
   async function addPlayer() {
     if (!name.trim()) return
-    const res = await fetch('/api/players', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name.trim() }) })
+    const res = await fetch('/api/players', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name.trim(), real_name: realName.trim() || null }) })
     const p = await res.json()
     setPlayers(prev => [...prev, p])
     setName('')
+    setRealName('')
   }
 
   async function startTimer(id: string) {
@@ -137,8 +139,11 @@ export default function AdminPage() {
       </div>
       <div style={s.body}>
         <div style={s.addBar}>
-          <input style={s.inp} placeholder="Player name" value={name}
+          <input style={s.inp} placeholder="Username (public)" value={name}
             onChange={e => setName(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && addPlayer()} />
+          <input style={{ ...s.inp, maxWidth: 220 }} placeholder="Real name (admin only)" value={realName}
+            onChange={e => setRealName(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && addPlayer()} />
           <button style={s.btnAdd} onClick={addPlayer}>Add player</button>
         </div>
@@ -156,7 +161,9 @@ export default function AdminPage() {
                         {rank !== null ? rank + 1 : '—'}
                       </span>
                     </div>
-                    <div style={{ ...s.name, ...(p.state === 'pending' ? s.nameMuted : {}) }}>{p.name}</div>
+                    <div style={{ ...s.name, ...(p.state === 'pending' ? s.nameMuted : {}) }}>
+                      {p.name}{p.real_name && <span style={{ color: '#999', fontWeight: 300, fontSize: 12, marginLeft: 8 }}>({p.real_name})</span>}
+                    </div>
                     <div style={{ ...s.timer, ...(p.state === 'live' ? s.timerLive : p.state === 'pending' ? s.timerEmpty : {}) }}>
                       {p.state === 'pending' ? '—:——.——' : fmt(elapsed)}
                     </div>

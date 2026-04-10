@@ -55,11 +55,9 @@ export default function StreamPage() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
         <div>
-          <div style={{ fontSize: 9, letterSpacing: '0.3em', color: '#888', textTransform: 'uppercase', marginBottom: 4, fontWeight: 400 }}>
-            Portal Space Systems
-          </div>
+          <img src="/portal-logo.png" alt="Portal" style={{ height: 32, marginBottom: 8, display: 'block' }} />
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '0.04em', color: '#fff' }}>
-            Portal Space Leaderboard
+            Leaderboard
           </div>
           <div style={{ fontSize: 11, color: '#999', marginTop: 4, fontWeight: 300 }}>
             {done.length > 0 ? `${done.length} completed run${done.length !== 1 ? 's' : ''}` : 'Waiting for results...'}
