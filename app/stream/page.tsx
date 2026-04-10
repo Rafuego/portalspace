@@ -18,6 +18,14 @@ const MEDAL = [
 export default function StreamPage() {
   const [players, setPlayers] = useState<Player[]>([])
   const [clock, setClock] = useState('')
+  const [username, setUsername] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
+  async function submitName() {
+    if (!username.trim()) return
+    await fetch('/api/players', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: username.trim() }) })
+    setSubmitted(true)
+  }
 
   useEffect(() => {
     supabase.from('players').select('*').order('created_at').then(({ data }) => {
@@ -75,6 +83,29 @@ export default function StreamPage() {
 
       {/* Divider */}
       <div style={{ height: 1, background: '#333', marginBottom: 22 }} />
+
+      {/* Player registration */}
+      {!submitted ? (
+        <div style={{ display: 'flex', gap: 10, marginBottom: 24, alignItems: 'center' }}>
+          <input
+            style={{ flex: 1, maxWidth: 280, background: 'transparent', border: '1px solid #333', color: '#fff', fontFamily: 'inherit', fontSize: 13, padding: '10px 14px', borderRadius: 4, outline: 'none' }}
+            placeholder="Enter your username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && submitName()}
+          />
+          <button
+            style={{ background: '#fff', border: 'none', color: '#000', fontFamily: 'inherit', fontSize: 10, letterSpacing: '0.12em', padding: '10px 20px', cursor: 'pointer', borderRadius: 4, textTransform: 'uppercase', fontWeight: 600 }}
+            onClick={submitName}
+          >
+            Join
+          </button>
+        </div>
+      ) : (
+        <div style={{ marginBottom: 24, fontSize: 12, color: '#777', letterSpacing: '0.08em' }}>
+          ✓ Registered as <span style={{ color: '#fff', fontWeight: 500 }}>{username}</span> — waiting for your run
+        </div>
+      )}
 
       {/* Empty state */}
       {done.length === 0 && (
