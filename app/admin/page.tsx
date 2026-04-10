@@ -161,8 +161,21 @@ export default function AdminPage() {
                         {rank !== null ? rank + 1 : '—'}
                       </span>
                     </div>
-                    <div style={{ ...s.name, ...(p.state === 'pending' ? s.nameMuted : {}) }}>
-                      {p.name}{p.real_name && <span style={{ color: '#999', fontWeight: 300, fontSize: 12, marginLeft: 8 }}>({p.real_name})</span>}
+                    <div style={{ ...s.name, ...(p.state === 'pending' ? s.nameMuted : {}), display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span>{p.name}</span>
+                      <input
+                        style={{ border: 'none', borderBottom: '1px dashed #ccc', background: 'transparent', color: '#999', fontFamily: 'inherit', fontSize: 11, padding: '2px 4px', width: 140, outline: 'none', fontWeight: 300 }}
+                        placeholder="+ real name"
+                        defaultValue={p.real_name ?? ''}
+                        onBlur={async (e) => {
+                          const val = e.target.value.trim() || null
+                          if (val === (p.real_name ?? null)) return
+                          const res = await fetch(`/api/players/${p.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ real_name: val }) })
+                          const updated = await res.json()
+                          setPlayers(prev => prev.map(x => x.id === p.id ? updated : x))
+                        }}
+                        onKeyDown={(e) => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur() }}
+                      />
                     </div>
                     <div style={{ ...s.timer, ...(p.state === 'live' ? s.timerLive : p.state === 'pending' ? s.timerEmpty : {}) }}>
                       {p.state === 'pending' ? '—:——.——' : fmt(elapsed)}
