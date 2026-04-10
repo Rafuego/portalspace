@@ -60,10 +60,14 @@ export default function StreamPage() {
   return (
     <div style={{ background: '#000', minHeight: '100vh', color: '#fff', fontFamily: 'inherit', padding: '36px 32px' }}>
 
+      {/* Logo */}
+      <div style={{ textAlign: 'center', marginBottom: 28 }}>
+        <img src="/portal-logo.png" alt="Portal" style={{ height: 80, display: 'inline-block' }} />
+      </div>
+
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 32 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 32 }}>
         <div>
-          <img src="/portal-logo.png" alt="Portal" style={{ height: 56, marginBottom: 12, display: 'block' }} />
           <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '0.04em', color: '#fff' }}>
             Leaderboard
           </div>
